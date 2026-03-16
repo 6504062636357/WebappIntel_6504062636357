@@ -114,7 +114,7 @@ div.stButton > button:hover {
 # -------------------------------------------------
 @st.cache_data
 def load_data():
-    df = pd.read_csv("Churn_Modelling.csv")
+    df = pd.read_csv("Machine Learning_best_churn/Churn_Modelling.csv")
     df = df.drop(["RowNumber","CustomerId","Surname"], axis=1)
     df = pd.get_dummies(df, drop_first=True)
     return df
