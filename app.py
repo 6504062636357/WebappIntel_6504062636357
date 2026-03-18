@@ -109,12 +109,12 @@ page = st.sidebar.radio("Menu",[
     "Neural Network Model"
 ])
 
-# ---------------- HOME ----------------
 if page == "Home":
     st.title("Intelligence Systems Project")
-    st.write("ระบบวิเคราะห์และทำนายข้อมูลอัจฉริยะด้วย Machine Learning และ Neural Network")
+    st.write("ระบบวิเคราะห์และทำนายข้อมูลด้วย Machine Learning และ Neural Network")
     
     col1, col2 = st.columns(2)
+
     with col1:
         st.markdown(f"""
         <div class="card">
@@ -128,17 +128,17 @@ if page == "Home":
         """, unsafe_allow_html=True)
 
     with col2:
-    st.markdown("""
-    <div class="card">
-        <span class="status-badge">Deep Learning</span>
-        <h3>🩸 Diabetes Dataset</h3>
-        <p style="color: #cbd5e1;">วิเคราะห์ปัจจัยทางสุขภาพเพื่อประเมินความเสี่ยงในการเป็นโรคเบาหวาน</p>
-        <hr style="border-color: rgba(255,255,255,0.1)">
-        <p><b>Features:</b> Glucose, BMI, Insulin, Age</p>
-        <a href="https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset" 
-        style="color: #ff4b4b; text-decoration: none;">View Dataset</a>
-    </div>
-    """, unsafe_allow_html=True)
+        st.markdown("""
+        <div class="card">
+            <span class="status-badge">Deep Learning</span>
+            <h3>🩸 Diabetes Dataset</h3>
+            <p style="color: #cbd5e1;">วิเคราะห์ปัจจัยทางสุขภาพเพื่อประเมินความเสี่ยงในการเป็นโรคเบาหวาน</p>
+            <hr style="border-color: rgba(255,255,255,0.1)">
+            <p><b>Features:</b> Glucose, BMI, Insulin, Age</p>
+            <a href="https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset" 
+            style="color: #ff4b4b; text-decoration: none;">View Dataset</a>
+        </div>
+        """, unsafe_allow_html=True)
 
 # ---------------- ML ----------------
 elif page == "Machine Learning Analysis":
