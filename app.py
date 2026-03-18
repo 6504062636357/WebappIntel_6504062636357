@@ -14,48 +14,36 @@ from xgboost import XGBClassifier
 # ---------------- CONFIG ----------------
 st.set_page_config(page_title="AI Dashboard", layout="wide")
 
-# ---------------- STYLE ----------------
 st.markdown("""
 <style>
-    /* พื้นหลังหลัก */
-    .stApp {
-        background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-    }
-    
-    /* สไตล์การ์ด Glassmorphism */
-    .card {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        padding: 30px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        margin-bottom: 20px;
-    }
-    
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-        border: 1px solid rgba(255, 75, 75, 0.5);
-    }
-    
-    /* ปรับแต่งหัวข้อ */
-    h1, h2, h3 {
-        background: linear-gradient(90deg, #ff4b4b, #ff8a8a);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: 800;
-    }
-    
-    .status-badge {
-        padding: 5px 12px;
-        border-radius: 50px;
-        font-size: 0.8rem;
-        font-weight: bold;
-        background: rgba(255, 75, 75, 0.2);
-        color: #ff4b4b;
-        border: 1px solid #ff4b4b;
-    }
+
+h1, h2, h3 {
+    background: linear-gradient(90deg, #ff4b4b, #ff8a8a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+
+p, span, label {
+    color: #e2e8f0 !important;   /* เทาอ่อน อ่านง่าย */
+}
+
+
+div[data-baseweb="input"] input {
+    color: white !important;
+}
+
+
+div[data-baseweb="select"] {
+    color: white !important;
+}
+
+
+.stMarkdown, .stText {
+    color: #e2e8f0 !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
