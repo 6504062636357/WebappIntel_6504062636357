@@ -78,15 +78,17 @@ if page == "Home":
         """, unsafe_allow_html=True)
 
     with col2:
-        st.markdown("""
-        <div class="card">
-            <span class="status-badge">Deep Learning</span>
-            <h3>🩸 Diabetes Dataset</h3>
-            <p style="color: #cbd5e1;">วิเคราะห์ปัจจัยทางสุขภาพเพื่อประเมินความเสี่ยงในการเป็นโรคเบาหวาน (Diabetes Prediction)</p>
-            <hr style="border-color: rgba(255,255,255,0.1)">
-            <p><b>Features:</b> Glucose, BMI, Insulin, Age, etc.</p>
-            <a href="https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset" style="color: #ff4b4b; text-decoration: none;">🔗 View Dataset</a>
-        </div>
+    st.markdown("""
+    <div class="card">
+        <span class="status-badge">Deep Learning</span>
+        <h3>🩸 Diabetes Dataset</h3>
+        <p style="color: #cbd5e1;">วิเคราะห์ปัจจัยทางสุขภาพเพื่อประเมินความเสี่ยงในการเป็นโรคเบาหวาน</p>
+        <hr style="border-color: rgba(255,255,255,0.1)">
+        <p><b>Features:</b> Glucose, BMI, Insulin, Age</p>
+        <a href="https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset" 
+        style="color: #ff4b4b; text-decoration: none;">View Dataset</a>
+    </div>
+    """, unsafe_allow_html=True)
     
 
 # ---------------- LOAD DATA ----------------
@@ -391,12 +393,12 @@ elif page == "Neural Network Model":
             age_nn = st.number_input("Age", 1, 120, 30)
             preg = st.number_input("Pregnancies", 0, 20, 0)
 
-    if st.button("🚀 เริ่มการประมวลผลด้วย AI"):
+    if st.button(" เริ่มการประมวลผลด้วย AI"):
         # คำนวณความเสี่ยงจำลอง (Logic อิงตามค่าน้ำตาลและ BMI)
         base_risk = (glu / 200) * 60 + (bmi / 50) * 40
         risk_final = min(base_risk, 100.0)
 
-        st.markdown("### 📋 ผลการประเมินความเสี่ยง")
+        st.markdown("###  ผลการประเมินความเสี่ยง")
         
         # แสดงผลด้วย Progress Bar
         st.write(f"ระดับความเสี่ยงปัจจุบัน: **{risk_final:.1f}%**")
