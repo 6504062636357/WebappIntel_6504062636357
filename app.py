@@ -98,7 +98,7 @@ if page == "Home":
 
 with col1:
     st.markdown("""
-    <div class="card">
+    <section class="card">
         <h3>📊 Churn Dataset</h3>
         <p style="color:#60a5fa !important;">
         วิเคราะห์พฤติกรรมลูกค้าธนาคาร เพื่อทำนายโอกาสในการยกเลิกบริการ (Churn Prediction)
@@ -107,7 +107,7 @@ with col1:
         <p><b>Features:</b> Credit Score, Age, Tenure, Balance, etc.</p>
         <a href="https://www.kaggle.com/datasets/saurabhbadole/bank-customer-churn-prediction-dataset" 
         style="color: #ff4b4b; text-decoration: none;">🔗 View Dataset</a>
-    </div>
+    </section>
     """, unsafe_allow_html=True)
 
 with col2:
