@@ -18,40 +18,24 @@ st.markdown("""
 <style>
 
 
-.stApp {
-    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+section[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 100%);
 }
 
 
-h1, h2, h3 {
-    background: linear-gradient(90deg, #ff4b4b, #ff8a8a);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 800;
+section[data-testid="stSidebar"] * {
+    color: #e2e8f0 !important;
 }
 
 
-p {
+section[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label[data-checked="true"] {
+    color: #ff4b4b !important;
+    font-weight: bold;
+}
+
+
+section[data-testid="stSidebar"] .stRadio label {
     color: #cbd5e1 !important;
-}
-
-
-label {
-    color: #e2e8f0 !important;
-}
-
-
-.stMarkdown {
-    color: #e2e8f0 !important;
-}
-
-input {
-    color: white !important;
-}
-
-
-div[data-baseweb="select"] {
-    color: white !important;
 }
 
 </style>
@@ -144,7 +128,7 @@ elif page == "Machine Learning Analysis":
     df = load_ml()
     if df.empty: st.stop()
 
-    # 📊 TABLE
+
     st.subheader("Dataset Preview")
     st.dataframe(df.head())
 
@@ -227,7 +211,7 @@ elif page == "Machine Learning Analysis":
 
 # ---------------- NN ----------------
 elif page == "Neural Network Analysis":
-    st.title("🔬 Neural Network Analysis (Diabetes Prediction)")
+    st.title(" Neural Network Analysis (Diabetes Prediction)")
 
     df = load_nn()
     if df.empty: st.stop()
@@ -295,7 +279,7 @@ elif page == "Neural Network Analysis":
         st.write("แสดงความก้าวหน้าในการเรียนรู้ของ Model ตลอด 50 Epochs")
 # ---------------- TEST ML ----------------
 elif page == "Machine Learning Model":
-    st.title("🏦 Customer Churn Prediction")
+    st.title(" Customer Churn Prediction")
     
     st.markdown("""
     <div class="card">
@@ -343,7 +327,7 @@ elif page == "Machine Learning Model":
 
 # ---------------- TEST NN ----------------
 elif page == "Neural Network Model":
-    st.title("🩸 Diabetes Risk Analysis")
+    st.title(" Diabetes Risk Analysis")
 
     st.markdown("""
     <div class="card">
