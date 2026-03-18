@@ -99,9 +99,9 @@ if page == "Home":
     with col1:
         st.markdown(f"""
         <div class="card">
-            <span class="status-badge">Classification</span>
+            
             <h3>📊 Churn Dataset</h3>
-            <p style="color: #cbd5e1;">วิเคราะห์พฤติกรรมลูกค้าธนาคาร เพื่อทำนายโอกาสในการยกเลิกบริการ (Churn Prediction)</p>
+            <p style="color:#60a5fa !important;">วิเคราะห์พฤติกรรมลูกค้าธนาคาร เพื่อทำนายโอกาสในการยกเลิกบริการ (Churn Prediction)</p>
             <hr style="border-color: rgba(255,255,255,0.1)">
             <p><b>Features:</b> Credit Score, Age, Tenure, Balance, etc.</p>
             <a href="https://www.kaggle.com/datasets/saurabhbadole/bank-customer-churn-prediction-dataset" style="color: #ff4b4b; text-decoration: none;">🔗 View Dataset</a>
@@ -111,9 +111,9 @@ if page == "Home":
     with col2:
         st.markdown("""
         <div class="card">
-            <span class="status-badge">Deep Learning</span>
+            
             <h3>🩸 Diabetes Dataset</h3>
-            <p style="color: #cbd5e1;">วิเคราะห์ปัจจัยทางสุขภาพเพื่อประเมินความเสี่ยงในการเป็นโรคเบาหวาน</p>
+            <p style="color:#60a5fa !important;">วิเคราะห์ปัจจัยทางสุขภาพเพื่อประเมินความเสี่ยงในการเป็นโรคเบาหวาน</p>
             <hr style="border-color: rgba(255,255,255,0.1)">
             <p><b>Features:</b> Glucose, BMI, Insulin, Age</p>
             <a href="https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset" 
