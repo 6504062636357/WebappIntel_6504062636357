@@ -17,6 +17,12 @@ st.set_page_config(page_title="AI Dashboard", layout="wide")
 st.markdown("""
 <style>
 
+
+.stApp {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+}
+
+
 h1, h2, h3 {
     background: linear-gradient(90deg, #ff4b4b, #ff8a8a);
     -webkit-background-clip: text;
@@ -25,12 +31,21 @@ h1, h2, h3 {
 }
 
 
-p, span, label {
-    color: #e2e8f0 !important;   /* เทาอ่อน อ่านง่าย */
+p {
+    color: #cbd5e1 !important;
 }
 
 
-div[data-baseweb="input"] input {
+label {
+    color: #e2e8f0 !important;
+}
+
+
+.stMarkdown {
+    color: #e2e8f0 !important;
+}
+
+input {
     color: white !important;
 }
 
@@ -39,14 +54,8 @@ div[data-baseweb="select"] {
     color: white !important;
 }
 
-
-.stMarkdown, .stText {
-    color: #e2e8f0 !important;
-}
-
 </style>
 """, unsafe_allow_html=True)
-
 # ---------------- LOAD DATA ----------------
 @st.cache_data
 def load_ml():
