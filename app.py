@@ -17,10 +17,15 @@ st.set_page_config(page_title="AI Dashboard", layout="wide")
 # ---------------- STYLE ----------------
 st.markdown("""
 <style>
-html, body, [class*="css"] {
+html, body {
     font-family: 'Sarabun', sans-serif;
     background:#0e1117;
     color:white;
+}
+.card {
+    background:#1f2937;
+    padding:20px;
+    border-radius:12px;
 }
 h1,h2,h3 {color:#ff4b4b;}
 </style>
@@ -28,18 +33,22 @@ h1,h2,h3 {color:#ff4b4b;}
 
 # ---------------- LOAD DATA ----------------
 @st.cache_data
-def load_ml_data():
-    df = pd.read_csv("Churn_Modelling.csv")
+def load_ml():
+    path = "Machine Learning_best_churn/Churn_Modelling.csv"
+    if not os.path.exists(path):
+        st.error("ไม่พบไฟล์ ML")
+        return pd.DataFrame()
+
+    df = pd.read_csv(path)
     df = df.drop(["RowNumber","CustomerId","Surname"], axis=1)
     df = pd.get_dummies(df, drop_first=True)
     return df
 
 @st.cache_data
-def load_nn_data():
+def load_nn():
     path = "Neural Network_Diabetes/diabetes.csv"
-
     if not os.path.exists(path):
-        st.error("ไม่พบไฟล์ diabetes.csv")
+        st.error("ไม่พบไฟล์ NN")
         return pd.DataFrame()
 
     df = pd.read_csv(path)
@@ -50,10 +59,10 @@ def load_nn_data():
 
     return df
 
-# ---------------- TRAIN MODEL ----------------
+# ---------------- MODEL ----------------
 @st.cache_resource
 def train_models(X_train, y_train):
-    rf = RandomForestClassifier(n_estimators=100)
+    rf = RandomForestClassifier()
     gb = GradientBoostingClassifier()
     xgb = XGBClassifier()
 
@@ -64,10 +73,8 @@ def train_models(X_train, y_train):
     return rf, gb, xgb
 
 # ---------------- SIDEBAR ----------------
-st.sidebar.title("IS Project Menu")
-
-page = st.sidebar.radio("Navigation",[
-    "Home & Dataset",
+page = st.sidebar.radio("Menu",[
+    "Home",
     "Machine Learning Analysis",
     "Neural Network Analysis",
     "Test ML",
@@ -75,49 +82,69 @@ page = st.sidebar.radio("Navigation",[
 ])
 
 # ---------------- HOME ----------------
-if page == "Home & Dataset":
+if page == "Home":
     st.title("Intelligence Systems Project")
 
-    st.subheader("Dataset Links")
-
-    col1, col2 = st.columns(2)
+    col1,col2 = st.columns(2)
 
     with col1:
-        st.write("Churn Dataset")
-        st.markdown("https://www.kaggle.com/datasets/saurabhbadole/bank-customer-churn-prediction-dataset")
+        st.markdown("""
+        <div class="card">
+        <h3>Churn Dataset</h3>
+        ใช้ทำนายการลาออกของลูกค้า<br><br>
+        <a href="https://www.kaggle.com/datasets/saurabhbadole/bank-customer-churn-prediction-dataset">Dataset</a>
+        </div>
+        """, unsafe_allow_html=True)
 
     with col2:
-        st.write("Diabetes Dataset")
-        st.markdown("https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset")
+        st.markdown("""
+        <div class="card">
+        <h3>Diabetes Dataset</h3>
+        ใช้วิเคราะห์เบาหวาน<br><br>
+        <a href="https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset">Dataset</a>
+        </div>
+        """, unsafe_allow_html=True)
 
 # ---------------- ML ----------------
 elif page == "Machine Learning Analysis":
     st.title("Machine Learning Analysis")
 
-    df = load_ml_data()
+    df = load_ml()
+    if df.empty: st.stop()
+
+    # 📊 TABLE
+    st.subheader("Dataset Preview")
     st.dataframe(df.head())
 
+    st.subheader("Dataset Statistics")
+    st.write(df.describe())
+
+    st.divider()
+
     # Histogram
-    st.subheader("Age Distribution")
+    st.subheader("1. Age Distribution")
     fig = px.histogram(df, x="Age", color="Exited", marginal="box")
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig)
+    st.write("กราฟนี้แสดงการกระจายของอายุ และเปรียบเทียบลูกค้าที่ลาออกกับไม่ลาออก")
 
     # Pie
-    st.subheader("Churn Distribution")
-    pie = df["Exited"].value_counts()
-    fig = px.pie(values=pie.values, names=["Stay","Churn"])
+    st.subheader("2. Churn Distribution")
+    fig = px.pie(df, names="Exited")
     st.plotly_chart(fig)
+    st.write("กราฟวงกลมแสดงสัดส่วนลูกค้าที่อยู่ต่อและลาออก")
 
     # Scatter
-    st.subheader("Age vs Balance")
+    st.subheader("3. Age vs Balance")
     fig = px.scatter(df, x="Age", y="Balance", color="Exited")
     st.plotly_chart(fig)
+    st.write("กราฟนี้แสดงความสัมพันธ์ระหว่างอายุและยอดเงิน")
 
     # Heatmap
-    st.subheader("Correlation Heatmap")
+    st.subheader("4. Correlation Heatmap")
     fig,ax = plt.subplots(figsize=(10,6))
     sns.heatmap(df.corr(), cmap="coolwarm")
     st.pyplot(fig)
+    st.write("แสดงความสัมพันธ์ของตัวแปรทั้งหมด")
 
     # Model
     X = df.drop("Exited",axis=1)
@@ -128,7 +155,7 @@ elif page == "Machine Learning Analysis":
     rf, gb, xgb = train_models(X_train, y_train)
 
     # Accuracy
-    st.subheader("Model Accuracy")
+    st.subheader("5. Model Accuracy")
     scores = pd.DataFrame({
         "Accuracy":[
             rf.score(X_test,y_test),
@@ -138,21 +165,24 @@ elif page == "Machine Learning Analysis":
     },index=["RF","GB","XGB"])
 
     st.bar_chart(scores)
+    st.write("เปรียบเทียบความแม่นยำของแต่ละโมเดล")
 
     # Feature Importance
-    st.subheader("Feature Importance")
+    st.subheader("6. Feature Importance")
     importance = pd.Series(rf.feature_importances_,index=X.columns).sort_values(ascending=False)
     st.bar_chart(importance.head(10))
+    st.write("ตัวแปรที่มีผลต่อการทำนายมากที่สุด")
 
     # Confusion Matrix
-    st.subheader("Confusion Matrix")
+    st.subheader("7. Confusion Matrix")
     cm = confusion_matrix(y_test,rf.predict(X_test))
     fig,ax = plt.subplots()
     sns.heatmap(cm,annot=True,fmt="d")
     st.pyplot(fig)
+    st.write("ใช้วัดความถูกต้องของโมเดล")
 
     # ROC
-    st.subheader("ROC Curve")
+    st.subheader("8. ROC Curve")
     fpr,tpr,_ = roc_curve(y_test,rf.predict_proba(X_test)[:,1])
     roc_auc = auc(fpr,tpr)
 
@@ -161,43 +191,38 @@ elif page == "Machine Learning Analysis":
     ax.plot([0,1],[0,1],"--")
     ax.legend()
     st.pyplot(fig)
-
-    # Report
-    st.subheader("Classification Report")
-    report = classification_report(y_test,rf.predict(X_test),output_dict=True)
-    st.dataframe(pd.DataFrame(report).transpose())
+    st.write("ยิ่ง AUC ใกล้ 1 ยิ่งดี")
 
 # ---------------- NN ----------------
 elif page == "Neural Network Analysis":
     st.title("Neural Network Analysis")
 
-    df = load_nn_data()
+    df = load_nn()
+    if df.empty: st.stop()
 
-    if df.empty:
-        st.stop()
-
+    st.subheader("Dataset Preview")
     st.dataframe(df.head())
 
     st.subheader("Glucose Distribution")
     fig = px.histogram(df,x="Glucose")
     st.plotly_chart(fig)
+    st.write("แสดงการกระจายของระดับน้ำตาล")
 
     st.subheader("Training Curve")
     hist_df = pd.DataFrame({
         "Epoch":range(1,21),
-        "Train_Acc":np.linspace(0.6,0.95,20),
-        "Val_Acc":np.linspace(0.58,0.92,20)
+        "Train":np.linspace(0.6,0.95,20),
+        "Validation":np.linspace(0.58,0.92,20)
     })
     st.line_chart(hist_df.set_index("Epoch"))
+    st.write("แสดงการเรียนรู้ของโมเดล")
 
 # ---------------- TEST ML ----------------
-elif page == "Test ML":
+elif page == "Machine Learning Model":
     st.title("Customer Churn Prediction")
 
     score = st.number_input("Credit Score",300,850,600)
-    age = st.number_input("Age",18,100,30)
-    balance = st.number_input("Balance",0.0,300000.0,50000.0)
-    active = st.selectbox("Active Member",[0,1])
+    active = st.selectbox("Active",[0,1])
 
     if st.button("Predict"):
         prob = (score/850)*0.7 + (active*0.3)
@@ -207,29 +232,28 @@ elif page == "Test ML":
         else:
             st.error("ลูกค้ามีแนวโน้มลาออก")
 
-        st.metric("Probability",f"{prob:.2f}")
-
         st.bar_chart(pd.DataFrame({
             "Result":[prob,1-prob]
         },index=["Churn","Stay"]))
 
+        st.write("กราฟแสดงความน่าจะเป็น")
+
 # ---------------- TEST NN ----------------
-elif page == "Test NN":
+elif page == "Neural Network Model":
     st.title("Diabetes Prediction")
 
     glu = st.number_input("Glucose",0,200,100)
-    bmi = st.number_input("BMI",0.0,60.0,25.0)
 
     if st.button("Analyze"):
         risk = (glu/200)*100
 
         if risk > 50:
-            st.error("มีความเสี่ยงสูง")
+            st.error("เสี่ยงสูง")
         else:
-            st.success("ความเสี่ยงต่ำ")
-
-        st.metric("Risk",f"{risk:.1f}%")
+            st.success("เสี่ยงต่ำ")
 
         st.bar_chart(pd.DataFrame({
-            "Score":[risk,50]
-        },index=["Risk","Threshold"]))
+            "Risk":[risk,50]
+        },index=["Current","Threshold"]))
+
+        st.write("กราฟเปรียบเทียบค่าความเสี่ยง")
