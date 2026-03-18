@@ -96,32 +96,32 @@ if page == "Home":
     
     col1, col2 = st.columns(2)
 
-with col1:
-    st.markdown("""
-    <section class="card">
-        <h3>📊 Churn Dataset</h3>
-        <p style="color:#60a5fa !important;">
-        วิเคราะห์พฤติกรรมลูกค้าธนาคาร เพื่อทำนายโอกาสในการยกเลิกบริการ (Churn Prediction)
-        </p>
-        <hr style="border-color: rgba(255,255,255,0.1)">
-        <p><b>Features:</b> Credit Score, Age, Tenure, Balance, etc.</p>
-        <a href="https://www.kaggle.com/datasets/saurabhbadole/bank-customer-churn-prediction-dataset" 
-        style="color: #ff4b4b; text-decoration: none;">🔗 View Dataset</a>
-    </section>
+    with col1:
+        st.markdown("""
+        <section class="card">
+            <h3>📊 Churn Dataset</h3>
+            <p style="color:#60a5fa !important;">
+            วิเคราะห์พฤติกรรมลูกค้าธนาคาร เพื่อทำนายโอกาสในการยกเลิกบริการ (Churn Prediction)
+            </p>
+            <hr style="border-color: rgba(255,255,255,0.1)">
+            <p><b>Features:</b> Credit Score, Age, Tenure, Balance, etc.</p>
+            <a href="https://www.kaggle.com/datasets/saurabhbadole/bank-customer-churn-prediction-dataset" 
+            style="color: #ff4b4b; text-decoration: none;">🔗 View Dataset</a>
+        </section>
     """, unsafe_allow_html=True)
 
-with col2:
-    st.markdown("""
-    <section class="card">
-        <h3>🩸 Diabetes Dataset</h3>
-        <p style="color:#60a5fa !important;">
-        วิเคราะห์ปัจจัยทางสุขภาพเพื่อประเมินความเสี่ยงในการเป็นโรคเบาหวาน
-        </p>
-        <hr style="border-color: rgba(255,255,255,0.1)">
-        <p><b>Features:</b> Glucose, BMI, Insulin, Age</p>
-        <a href="https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset" 
-        style="color: #ff4b4b; text-decoration: none;">🔗 View Dataset</a>
-    </section>
+    with col2:
+        st.markdown("""
+        <section class="card">
+            <h3>🩸 Diabetes Dataset</h3>
+            <p style="color:#60a5fa !important;">
+            วิเคราะห์ปัจจัยทางสุขภาพเพื่อประเมินความเสี่ยงในการเป็นโรคเบาหวาน
+            </p>
+            <hr style="border-color: rgba(255,255,255,0.1)">
+            <p><b>Features:</b> Glucose, BMI, Insulin, Age</p>
+            <a href="https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset" 
+            style="color: #ff4b4b; text-decoration: none;">🔗 View Dataset</a>
+        </section>
     """, unsafe_allow_html=True)
 
 # ---------------- ML ----------------
