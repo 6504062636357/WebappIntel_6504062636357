@@ -59,38 +59,6 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- HOME ----------------
-if page == "Home":
-    st.title("Intelligence Systems Project")
-    st.write("ระบบวิเคราะห์และทำนายข้อมูลอัจฉริยะด้วย Machine Learning และ Neural Network")
-    
-    col1, col2 = st.columns(2)
-    with col1:
-        st.markdown(f"""
-        <div class="card">
-            <span class="status-badge">Classification</span>
-            <h3>📊 Churn Dataset</h3>
-            <p style="color: #cbd5e1;">วิเคราะห์พฤติกรรมลูกค้าธนาคาร เพื่อทำนายโอกาสในการยกเลิกบริการ (Churn Prediction)</p>
-            <hr style="border-color: rgba(255,255,255,0.1)">
-            <p><b>Features:</b> Credit Score, Age, Tenure, Balance, etc.</p>
-            <a href="https://www.kaggle.com/datasets/saurabhbadole/bank-customer-churn-prediction-dataset" style="color: #ff4b4b; text-decoration: none;">🔗 View Dataset</a>
-        </div>
-        """, unsafe_allow_html=True)
-
-    with col2:
-    st.markdown("""
-    <div class="card">
-        <span class="status-badge">Deep Learning</span>
-        <h3>🩸 Diabetes Dataset</h3>
-        <p style="color: #cbd5e1;">วิเคราะห์ปัจจัยทางสุขภาพเพื่อประเมินความเสี่ยงในการเป็นโรคเบาหวาน</p>
-        <hr style="border-color: rgba(255,255,255,0.1)">
-        <p><b>Features:</b> Glucose, BMI, Insulin, Age</p>
-        <a href="https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset" 
-        style="color: #ff4b4b; text-decoration: none;">View Dataset</a>
-    </div>
-    """, unsafe_allow_html=True)
-    
-
 # ---------------- LOAD DATA ----------------
 @st.cache_data
 def load_ml():
@@ -144,26 +112,33 @@ page = st.sidebar.radio("Menu",[
 # ---------------- HOME ----------------
 if page == "Home":
     st.title("Intelligence Systems Project")
-
-    col1,col2 = st.columns(2)
-
+    st.write("ระบบวิเคราะห์และทำนายข้อมูลอัจฉริยะด้วย Machine Learning และ Neural Network")
+    
+    col1, col2 = st.columns(2)
     with col1:
-        st.markdown("""
+        st.markdown(f"""
         <div class="card">
-        <h3>Churn Dataset</h3>
-        ใช้ทำนายการลาออกของลูกค้า<br><br>
-        <a href="https://www.kaggle.com/datasets/saurabhbadole/bank-customer-churn-prediction-dataset">Dataset</a>
+            <span class="status-badge">Classification</span>
+            <h3>📊 Churn Dataset</h3>
+            <p style="color: #cbd5e1;">วิเคราะห์พฤติกรรมลูกค้าธนาคาร เพื่อทำนายโอกาสในการยกเลิกบริการ (Churn Prediction)</p>
+            <hr style="border-color: rgba(255,255,255,0.1)">
+            <p><b>Features:</b> Credit Score, Age, Tenure, Balance, etc.</p>
+            <a href="https://www.kaggle.com/datasets/saurabhbadole/bank-customer-churn-prediction-dataset" style="color: #ff4b4b; text-decoration: none;">🔗 View Dataset</a>
         </div>
         """, unsafe_allow_html=True)
 
     with col2:
-        st.markdown("""
-        <div class="card">
-        <h3>Diabetes Dataset</h3>
-        ใช้วิเคราะห์เบาหวาน<br><br>
-        <a href="https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset">Dataset</a>
-        </div>
-        """, unsafe_allow_html=True)
+    st.markdown("""
+    <div class="card">
+        <span class="status-badge">Deep Learning</span>
+        <h3>🩸 Diabetes Dataset</h3>
+        <p style="color: #cbd5e1;">วิเคราะห์ปัจจัยทางสุขภาพเพื่อประเมินความเสี่ยงในการเป็นโรคเบาหวาน</p>
+        <hr style="border-color: rgba(255,255,255,0.1)">
+        <p><b>Features:</b> Glucose, BMI, Insulin, Age</p>
+        <a href="https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset" 
+        style="color: #ff4b4b; text-decoration: none;">View Dataset</a>
+    </div>
+    """, unsafe_allow_html=True)
 
 # ---------------- ML ----------------
 elif page == "Machine Learning Analysis":
