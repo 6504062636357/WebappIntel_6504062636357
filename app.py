@@ -112,7 +112,7 @@ with col1:
 
 with col2:
     st.markdown("""
-    <div class="card">
+    <section class="card">
         <h3>🩸 Diabetes Dataset</h3>
         <p style="color:#60a5fa !important;">
         วิเคราะห์ปัจจัยทางสุขภาพเพื่อประเมินความเสี่ยงในการเป็นโรคเบาหวาน
@@ -120,8 +120,8 @@ with col2:
         <hr style="border-color: rgba(255,255,255,0.1)">
         <p><b>Features:</b> Glucose, BMI, Insulin, Age</p>
         <a href="https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset" 
-        style="color: #ff4b4b; text-decoration: none;">🔗View Dataset</a>
-    </div>
+        style="color: #ff4b4b; text-decoration: none;">🔗 View Dataset</a>
+    </section>
     """, unsafe_allow_html=True)
 
 # ---------------- ML ----------------
