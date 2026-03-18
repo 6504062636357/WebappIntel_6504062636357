@@ -87,7 +87,7 @@ if page == "Home":
             <p><b>Features:</b> Glucose, BMI, Insulin, Age, etc.</p>
             <a href="https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset" style="color: #ff4b4b; text-decoration: none;">🔗 View Dataset</a>
         </div>
-        """, unsafe_allow_html=True)
+    
 
 # ---------------- LOAD DATA ----------------
 @st.cache_data
